@@ -95,7 +95,7 @@ class SearchScreen extends StatelessWidget {
             const CircleAvatar(
               radius: 28,
               backgroundColor: Colors.white,
-              child: Icon(Icons.tune, color: Colors.black54),
+              child: Icon(Icons.tune, color: ColorClass.appBlack),
             ),
           ],
         ),
