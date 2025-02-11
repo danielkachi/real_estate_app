@@ -1,4 +1,5 @@
 import 'package:flutter/material.dart';
+import 'package:intl/intl.dart';
 import 'package:real_estate_app/screens/home/widgets/custom_bottom_sheet.dart';
 import 'package:real_estate_app/utils/app_text.dart';
 import 'package:real_estate_app/utils/color_class.dart';
@@ -76,14 +77,14 @@ class _HomeScreenState extends State<HomeScreen>
             decoration: BoxDecoration(
               gradient: LinearGradient(
                 colors: [
-                  ColorClass.appOrangeAccent.withOpacity(0.02),
-                  ColorClass.appOrangeAccent.withOpacity(0.02),
-                  ColorClass.appOrangeAccent.withOpacity(0.02),
-                  ColorClass.appOrangeAccent.withOpacity(0.2),
-                  ColorClass.appOrangeAccent.withOpacity(0.3),
-                  ColorClass.appOrangeAccent.withOpacity(0.3),
-                  ColorClass.appOrangeAccent,
-                  ColorClass.appOrangeAccent,
+                  ColorClass.appHomeCream.withOpacity(0.2),
+                  ColorClass.appHomeCream.withOpacity(0.2),
+                  ColorClass.appHomeCream.withOpacity(0.2),
+                  ColorClass.appHomeCream.withOpacity(0.9),
+                  ColorClass.appHomeCream.withOpacity(0.9),
+                  ColorClass.appOrangeAccent.withOpacity(0.5),
+                  ColorClass.appOrangeAccent.withOpacity(0.5),
+                  ColorClass.appOrangeAccent.withOpacity(0.5),
                   ColorClass.appOrangeAccent,
                 ],
                 begin: Alignment.topLeft,
@@ -180,7 +181,7 @@ class _HomeScreenState extends State<HomeScreen>
                                       Expanded(
                                         child: Card(
                                           elevation: 0,
-                                          color: Colors.orange,
+                                          color: ColorClass.appOrange,
                                           shape: const CircleBorder(),
                                           child: ConstrainedBox(
                                             constraints: const BoxConstraints(
@@ -212,8 +213,14 @@ class _HomeScreenState extends State<HomeScreen>
                                                         seconds: 2),
                                                     builder: (context, value,
                                                         child) {
+                                                      final formattedValue =
+                                                          NumberFormat("#,###",
+                                                                  "en_US")
+                                                              .format(value)
+                                                              .replaceAll(
+                                                                  ",", " ");
                                                       return Text(
-                                                        "$value",
+                                                        formattedValue,
                                                         style: AppText.bold
                                                             .copyWith(
                                                           color: Colors.white,
@@ -239,6 +246,7 @@ class _HomeScreenState extends State<HomeScreen>
                                       // RENT CARD
                                       Expanded(
                                         child: Card(
+                                          color: ColorClass.appOffWhite,
                                           elevation: 0,
                                           shape: RoundedRectangleBorder(
                                             borderRadius:
@@ -273,8 +281,14 @@ class _HomeScreenState extends State<HomeScreen>
                                                         seconds: 2),
                                                     builder: (context, value,
                                                         child) {
+                                                      final formattedValue =
+                                                          NumberFormat("#,###",
+                                                                  "en_US")
+                                                              .format(value)
+                                                              .replaceAll(
+                                                                  ",", " ");
                                                       return Text(
-                                                        "$value",
+                                                        formattedValue,
                                                         style: AppText.bold
                                                             .copyWith(
                                                           color: ColorClass

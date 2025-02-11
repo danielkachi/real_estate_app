@@ -10,4 +10,6 @@ class ColorClass {
   static const appWhite = Color(0xFFFFFFFF);
   static const appCream = Color(0xFFE5E4E2);
   static const appSlider = Color(0xFFB8B0A8);
+  static const appOffWhite = Color(0xFFFFFBF7);
+  static const appHomeCream = Color(0xFFF9EDDF);
 }

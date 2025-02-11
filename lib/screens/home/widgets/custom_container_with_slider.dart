@@ -73,7 +73,7 @@ class _CustomContainerWithSliderState extends State<CustomContainerWithSlider> {
                         child: Container(
                           height: 50,
                           decoration: BoxDecoration(
-                            color: ColorClass.appSlider,
+                            color: ColorClass.appSlider.withOpacity(0.9),
                             borderRadius: BorderRadius.circular(25),
                           ),
                         ),
@@ -105,7 +105,7 @@ class _CustomContainerWithSliderState extends State<CustomContainerWithSlider> {
                               height: 45,
                               width: 45,
                               decoration: const BoxDecoration(
-                                color: Colors.white,
+                                color: ColorClass.appOffWhite,
                                 shape: BoxShape.circle,
                               ),
                               child: const Icon(

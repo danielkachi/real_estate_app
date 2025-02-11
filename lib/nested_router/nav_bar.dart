@@ -1,5 +1,7 @@
 import 'package:flutter/material.dart';
+import 'package:flutter_svg/flutter_svg.dart';
 import 'package:real_estate_app/utils/color_class.dart';
+import 'package:real_estate_app/utils/svg_icons.dart';
 
 class NavBar extends StatelessWidget {
   const NavBar({
@@ -29,35 +31,35 @@ class NavBar extends StatelessWidget {
         mainAxisAlignment: MainAxisAlignment.center,
         children: [
           _buildNavBarItem(
-            Icons.search,
+            AppAssets.search,
             pageIndex == 0,
             0,
             onTap: () => onTap(0),
           ),
           const SizedBox(width: 8),
           _buildNavBarItem(
-            Icons.message,
+            AppAssets.messaging,
             pageIndex == 1,
             1,
             onTap: () => onTap(1),
           ),
           const SizedBox(width: 8),
           _buildNavBarItem(
-            Icons.home_filled,
+            AppAssets.home,
             pageIndex == 2,
             2,
             onTap: () => onTap(2),
           ), // Default selected icon
           const SizedBox(width: 8),
           _buildNavBarItem(
-            Icons.favorite,
+            AppAssets.favorite,
             pageIndex == 3,
             3,
             onTap: () => onTap(3),
           ),
           const SizedBox(width: 8),
           _buildNavBarItem(
-            Icons.person,
+            AppAssets.profile,
             pageIndex == 4,
             4,
             onTap: () => onTap(4),
@@ -67,7 +69,7 @@ class NavBar extends StatelessWidget {
     );
   }
 
-  Widget _buildNavBarItem(IconData icon, bool isSelected, int index,
+  Widget _buildNavBarItem(String icon, bool isSelected, int index,
       {Function()? onTap}) {
     // final bool isSelected = pageIndex == index;
     return GestureDetector(
@@ -77,16 +79,16 @@ class NavBar extends StatelessWidget {
             isSelected ? const EdgeInsets.all(18) : const EdgeInsets.all(10),
         decoration: isSelected
             ? const BoxDecoration(
-                color: Colors.orange,
+                color: ColorClass.appOrangeAccent,
                 shape: BoxShape.circle,
               )
             : BoxDecoration(
                 color: Colors.black.withOpacity(0.3),
                 shape: BoxShape.circle,
               ),
-        child: Icon(
+        child: SvgPicture.asset(
           icon,
-          color: isSelected ? Colors.white : Colors.white,
+          color: ColorClass.appWhite,
         ),
       ),
     );

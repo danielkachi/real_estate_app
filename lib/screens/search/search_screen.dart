@@ -31,10 +31,10 @@ class SearchScreen extends StatelessWidget {
                   ),
                   MarkerLayer(
                     markers: [
-                      _buildMarker(59.9343, 30.3351),
-                      _buildMarker(59.9273, 30.3221),
-                      _buildMarker(59.9201, 30.3551),
-                      _buildMarker(59.9403, 30.3811),
+                      _buildMarker(59.9632, 30.3351, "6,95 mn ₽"),
+                      _buildMarker(59.9273, 30.3221, "6,95 mn ₽"),
+                      _buildMarker(59.9201, 30.3876, "6,95 mn ₽"),
+                      _buildMarker(59.9403, 30.3811, "6,95 mn ₽"),
                     ],
                   ),
                 ],
@@ -49,18 +49,31 @@ class SearchScreen extends StatelessWidget {
     );
   }
 
-  Marker _buildMarker(double lat, double lng) {
+  Marker _buildMarker(double lat, double lng, String price) {
     return Marker(
       point: LatLng(lat, lng),
-      width: 40.w,
-      height: 40.h,
+      width: price.length * 12.w,
+      height: 44.h,
       child: Container(
-        decoration: const BoxDecoration(
-          color: Colors.orange,
-          shape: BoxShape.circle,
+        padding: EdgeInsets.symmetric(horizontal: 10.w, vertical: 6.h),
+        decoration: BoxDecoration(
+          color: ColorClass.appOrange,
+          borderRadius: BorderRadius.only(
+            topLeft: Radius.circular(8.r),
+            topRight: Radius.circular(8.r),
+            bottomRight: Radius.circular(8.r),
+            bottomLeft: const Radius.circular(0),
+          ),
         ),
         child: Center(
-          child: Icon(Icons.apartment, color: Colors.white, size: 24.sp),
+          child: Text(
+            price,
+            style: TextStyle(
+              color: Colors.white,
+              fontSize: 14.sp,
+              fontWeight: FontWeight.bold,
+            ),
+          ),
         ),
       ),
     );
@@ -113,7 +126,8 @@ class SearchScreen extends StatelessWidget {
             heroTag: "layers",
             mini: true,
             backgroundColor: ColorClass.appGrey2,
-            child: const Icon(Icons.layers, color: Colors.white),
+            child: const Icon(Icons.layers_outlined,
+                color: ColorClass.appOffWhite),
             onPressed: () {},
           ),
           SizedBox(height: 10.h),
@@ -121,7 +135,8 @@ class SearchScreen extends StatelessWidget {
             heroTag: "location",
             mini: true,
             backgroundColor: ColorClass.appGrey2,
-            child: const Icon(Icons.near_me, color: Colors.white),
+            child: const Icon(Icons.near_me_outlined,
+                color: ColorClass.appOffWhite),
             onPressed: () {
               _showNearMeDialog(context);
             },
