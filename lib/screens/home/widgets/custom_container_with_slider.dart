@@ -20,10 +20,50 @@ class CustomContainerWithSlider extends StatefulWidget {
       _CustomContainerWithSliderState();
 }
 
-class _CustomContainerWithSliderState extends State<CustomContainerWithSlider> {
-  double sliderPosition = 0.0;
+class _CustomContainerWithSliderState extends State<CustomContainerWithSlider>
+    with SingleTickerProviderStateMixin {
+  late AnimationController _controller;
+  late Animation<double> _sliderAnimation;
   bool isUnlocked = false;
   double containerWidth = 0.0;
+
+  @override
+  void initState() {
+    super.initState();
+
+    _controller = AnimationController(
+      vsync: this,
+      duration: const Duration(seconds: 2),
+    );
+
+    _sliderAnimation = Tween<double>(begin: 0.0, end: 0.0).animate(_controller);
+
+    WidgetsBinding.instance.addPostFrameCallback((_) {
+      if (!mounted) return;
+      setState(() {
+        containerWidth = context.size?.width ?? 0;
+        _sliderAnimation = Tween<double>(
+          begin: 0.0,
+          end: containerWidth - 60,
+        ).animate(CurvedAnimation(parent: _controller, curve: Curves.easeOut))
+          ..addListener(() {
+            if (_sliderAnimation.value >= containerWidth - 100) {
+              setState(() {
+                isUnlocked = true;
+              });
+            }
+          });
+
+        _controller.forward();
+      });
+    });
+  }
+
+  @override
+  void dispose() {
+    _controller.dispose();
+    super.dispose();
+  }
 
   @override
   Widget build(BuildContext context) {
@@ -78,44 +118,29 @@ class _CustomContainerWithSliderState extends State<CustomContainerWithSlider> {
                           ),
                         ),
                       ),
-                      GestureDetector(
-                        onHorizontalDragUpdate: (details) {
-                          setState(() {
-                            sliderPosition += details.delta.dx;
-                            sliderPosition =
-                                sliderPosition.clamp(0.0, containerWidth - 60);
-
-                            if (sliderPosition >= containerWidth - 100) {
-                              isUnlocked = true;
-                            }
-                          });
-                        },
-                        onHorizontalDragEnd: (_) {
-                          if (!isUnlocked) {
-                            setState(() {
-                              sliderPosition = 0.0;
-                            });
-                          }
-                        },
-                        child: Align(
-                          alignment: Alignment.centerLeft,
-                          child: Transform.translate(
-                            offset: Offset(sliderPosition, 0),
-                            child: Container(
-                              height: 45,
-                              width: 45,
-                              decoration: const BoxDecoration(
-                                color: ColorClass.appOffWhite,
-                                shape: BoxShape.circle,
-                              ),
-                              child: const Icon(
-                                Icons.keyboard_arrow_right_rounded,
-                                color: ColorClass.appSlider,
-                                size: 20,
+                      AnimatedBuilder(
+                        animation: _sliderAnimation,
+                        builder: (context, child) {
+                          return Align(
+                            alignment: Alignment.centerLeft,
+                            child: Transform.translate(
+                              offset: Offset(_sliderAnimation.value, 0),
+                              child: Container(
+                                height: 45,
+                                width: 45,
+                                decoration: const BoxDecoration(
+                                  color: ColorClass.appOffWhite,
+                                  shape: BoxShape.circle,
+                                ),
+                                child: const Icon(
+                                  Icons.keyboard_arrow_right_rounded,
+                                  color: ColorClass.appSlider,
+                                  size: 20,
+                                ),
                               ),
                             ),
-                          ),
-                        ),
+                          );
+                        },
                       ),
                       if (isUnlocked)
                         Center(

@@ -1,8 +1,10 @@
 import 'package:flutter/material.dart';
+import 'package:flutter_svg/flutter_svg.dart';
 import 'package:intl/intl.dart';
 import 'package:real_estate_app/screens/home/widgets/custom_bottom_sheet.dart';
 import 'package:real_estate_app/utils/app_text.dart';
 import 'package:real_estate_app/utils/color_class.dart';
+import 'package:real_estate_app/utils/svg_icons.dart';
 
 class HomeScreen extends StatefulWidget {
   const HomeScreen({Key? key, required this.tab}) : super(key: key);
@@ -28,7 +30,7 @@ class _HomeScreenState extends State<HomeScreen>
 
     _controller = AnimationController(
       vsync: this,
-      duration: const Duration(milliseconds: 800), // Animation duration
+      duration: const Duration(milliseconds: 800),
     );
 
     _slideAnimation = Tween<Offset>(
@@ -51,7 +53,7 @@ class _HomeScreenState extends State<HomeScreen>
       end: 1.0,
     ).animate(CurvedAnimation(parent: _controller, curve: Curves.easeOut));
 
-    // Start animation when screen opens
+    // This Starts the animation when screen opens
     Future.delayed(const Duration(milliseconds: 300), () {
       _controller.forward();
     });
@@ -85,6 +87,7 @@ class _HomeScreenState extends State<HomeScreen>
                   ColorClass.appOrangeAccent.withOpacity(0.5),
                   ColorClass.appOrangeAccent.withOpacity(0.5),
                   ColorClass.appOrangeAccent.withOpacity(0.5),
+                  ColorClass.appOrangeAccent.withOpacity(0.5),
                   ColorClass.appOrangeAccent,
                 ],
                 begin: Alignment.topLeft,
@@ -113,8 +116,8 @@ class _HomeScreenState extends State<HomeScreen>
                                 ),
                                 child: Row(
                                   children: [
-                                    const Icon(
-                                      Icons.place,
+                                    SvgPicture.asset(
+                                      AppAssets.location2,
                                       color: ColorClass.appGrey,
                                     ),
                                     const SizedBox(width: 4),
@@ -160,7 +163,7 @@ class _HomeScreenState extends State<HomeScreen>
                                 children: [
                                   Text(
                                     "Hi, Marina",
-                                    style: AppText.regular.copyWith(
+                                    style: AppText.semiBold.copyWith(
                                       color: ColorClass.appGrey,
                                       fontSize: 22,
                                     ),

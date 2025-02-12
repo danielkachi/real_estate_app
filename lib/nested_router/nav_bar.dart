@@ -31,37 +31,37 @@ class NavBar extends StatelessWidget {
         mainAxisAlignment: MainAxisAlignment.center,
         children: [
           _buildNavBarItem(
-            AppAssets.search,
-            pageIndex == 0,
-            0,
+            icon: AppAssets.search,
+            isSelected: pageIndex == 0,
+            index: 0,
             onTap: () => onTap(0),
           ),
           const SizedBox(width: 8),
           _buildNavBarItem(
-            AppAssets.messaging,
-            pageIndex == 1,
-            1,
+            icon: AppAssets.messaging,
+            isSelected: pageIndex == 1,
+            index: 1,
             onTap: () => onTap(1),
           ),
           const SizedBox(width: 8),
           _buildNavBarItem(
-            AppAssets.home,
-            pageIndex == 2,
-            2,
+            icon: AppAssets.home,
+            isSelected: pageIndex == 2,
+            index: 2,
             onTap: () => onTap(2),
           ), // Default selected icon
           const SizedBox(width: 8),
           _buildNavBarItem(
-            AppAssets.favorite,
-            pageIndex == 3,
-            3,
+            iconData: Icons.favorite,
+            isSelected: pageIndex == 3,
+            index: 3,
             onTap: () => onTap(3),
           ),
           const SizedBox(width: 8),
           _buildNavBarItem(
-            AppAssets.profile,
-            pageIndex == 4,
-            4,
+            iconData: Icons.person,
+            isSelected: pageIndex == 4,
+            index: 4,
             onTap: () => onTap(4),
           ),
         ],
@@ -69,9 +69,13 @@ class NavBar extends StatelessWidget {
     );
   }
 
-  Widget _buildNavBarItem(String icon, bool isSelected, int index,
-      {Function()? onTap}) {
-    // final bool isSelected = pageIndex == index;
+  Widget _buildNavBarItem({
+    String? icon,
+    IconData? iconData,
+    required bool isSelected,
+    required int index,
+    Function()? onTap,
+  }) {
     return GestureDetector(
       onTap: onTap,
       child: Container(
@@ -86,10 +90,15 @@ class NavBar extends StatelessWidget {
                 color: Colors.black.withOpacity(0.3),
                 shape: BoxShape.circle,
               ),
-        child: SvgPicture.asset(
-          icon,
-          color: ColorClass.appWhite,
-        ),
+        child: iconData != null
+            ? Icon(
+                iconData,
+                color: ColorClass.appWhite,
+              )
+            : SvgPicture.asset(
+                icon!,
+                color: ColorClass.appWhite,
+              ),
       ),
     );
   }

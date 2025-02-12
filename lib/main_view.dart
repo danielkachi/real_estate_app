@@ -5,7 +5,6 @@ import 'package:real_estate_app/screens/home/home_screen.dart';
 import 'package:real_estate_app/screens/messaging/messaging_screen.dart';
 import 'package:real_estate_app/screens/profile/profile_screen.dart';
 import 'package:real_estate_app/screens/search/search_screen.dart';
-import 'package:real_estate_app/utils/color_class.dart';
 
 class MainView extends StatefulWidget {
   const MainView({Key? key}) : super(key: key);

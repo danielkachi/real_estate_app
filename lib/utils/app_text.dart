@@ -14,6 +14,11 @@ class AppText {
     fontFamily: "EuclidCircularA",
     fontWeight: FontWeight.normal,
   );
+  static const regularCream = TextStyle(
+    fontFamily: "EuclidCircularA",
+    fontWeight: FontWeight.normal,
+    color: ColorClass.appCream,
+  );
   static const regularBlack = TextStyle(
     fontFamily: "EuclidCircularA",
     fontWeight: FontWeight.normal,
