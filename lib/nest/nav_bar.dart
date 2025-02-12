@@ -1,7 +1,9 @@
 import 'package:flutter/material.dart';
+import 'package:flutter_screenutil/flutter_screenutil.dart';
 import 'package:flutter_svg/flutter_svg.dart';
 import 'package:real_estate_app/utils/color_class.dart';
 import 'package:real_estate_app/utils/svg_icons.dart';
+import 'dart:io';
 
 class NavBar extends StatelessWidget {
   const NavBar({
@@ -16,10 +18,10 @@ class NavBar extends StatelessWidget {
   @override
   Widget build(BuildContext context) {
     return Container(
-      margin: const EdgeInsets.only(
-        left: 70,
-        right: 70,
-        bottom: 36,
+      margin: EdgeInsets.only(
+        left: Platform.isIOS ? 70 : 52,
+        right: Platform.isIOS ? 70 : 52,
+        bottom: Platform.isIOS ? 36 : 20,
       ),
       height: 70,
       width: MediaQuery.of(context).size.width * 0.8,

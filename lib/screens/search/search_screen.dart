@@ -1,3 +1,5 @@
+import 'dart:io';
+
 import 'package:flutter/material.dart';
 import 'package:flutter_screenutil/flutter_screenutil.dart';
 import 'package:flutter_map/flutter_map.dart';
@@ -201,7 +203,7 @@ class _SearchScreenState extends State<SearchScreen> {
 
   Widget _buildSearchBar() {
     return Positioned(
-      top: 70.h,
+      top: Platform.isIOS ? 70.h : 50.h,
       left: 20.w,
       right: 20.w,
       child: Padding(

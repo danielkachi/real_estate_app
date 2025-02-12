@@ -1,5 +1,5 @@
 import 'package:flutter/material.dart';
-import 'package:real_estate_app/nested_router/nav_bar.dart';
+import 'package:real_estate_app/nest/nav_bar.dart';
 import 'package:real_estate_app/screens/favorite/favorite_screen.dart';
 import 'package:real_estate_app/screens/home/home_screen.dart';
 import 'package:real_estate_app/screens/messaging/messaging_screen.dart';

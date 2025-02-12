@@ -6,12 +6,16 @@ class CustomContainerWithSlider extends StatefulWidget {
   final String imageUrl;
   final double height;
   final String sliderText;
+  final bool autoSlide;
+  final VoidCallback? onBottomSheetOpened;
 
   const CustomContainerWithSlider({
     super.key,
     required this.imageUrl,
     required this.height,
     required this.sliderText,
+    this.autoSlide = false,
+    this.onBottomSheetOpened,
   });
 
   @override
@@ -30,32 +34,43 @@ class _CustomContainerWithSliderState extends State<CustomContainerWithSlider>
   @override
   void initState() {
     super.initState();
-
     _controller = AnimationController(
       vsync: this,
       duration: const Duration(seconds: 2),
     );
 
     _sliderAnimation = Tween<double>(begin: 0.0, end: 0.0).animate(_controller);
+  }
+
+  @override
+  void didUpdateWidget(covariant CustomContainerWithSlider oldWidget) {
+    super.didUpdateWidget(oldWidget);
+    if (widget.autoSlide && !oldWidget.autoSlide) {
+      startSliderAnimation();
+    }
+  }
+
+  void startSliderAnimation() {
+    if (!mounted) return;
 
     WidgetsBinding.instance.addPostFrameCallback((_) {
-      if (!mounted) return;
-      setState(() {
-        containerWidth = context.size?.width ?? 0;
-        _sliderAnimation = Tween<double>(
-          begin: 0.0,
-          end: containerWidth - 60,
-        ).animate(CurvedAnimation(parent: _controller, curve: Curves.easeOut))
-          ..addListener(() {
-            if (_sliderAnimation.value >= containerWidth - 100) {
-              setState(() {
-                isUnlocked = true;
-              });
-            }
-          });
-
-        _controller.forward();
-      });
+      if (mounted) {
+        setState(() {
+          containerWidth = context.size?.width ?? 0;
+          _sliderAnimation = Tween<double>(
+            begin: 0.0,
+            end: containerWidth - 60,
+          ).animate(CurvedAnimation(parent: _controller, curve: Curves.easeOut))
+            ..addListener(() {
+              if (_sliderAnimation.value >= containerWidth - 100) {
+                setState(() {
+                  isUnlocked = true;
+                });
+              }
+            });
+          _controller.forward();
+        });
+      }
     });
   }
 
