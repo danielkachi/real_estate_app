@@ -13,6 +13,9 @@ class AppAssets {
   static const location = _SvgIcons.location;
   static const layer = _SvgIcons.layer;
   static const location2 = _SvgIcons.location2;
+  static const wallet = _SvgIcons.wallet;
+  static const infrastructure = _SvgIcons.infrastructure;
+  static const cosy = _SvgIcons.cosy;
 }
 
 class _SvgIcons {
@@ -27,4 +30,7 @@ class _SvgIcons {
   static const location = "$_iconsPath/location.svg";
   static const layer = "$_iconsPath/layers.svg";
   static const location2 = "$_iconsPath/location2.svg";
+  static const wallet = "$_iconsPath/wallet.svg";
+  static const infrastructure = "$_iconsPath/infrastructure.svg";
+  static const cosy = "$_iconsPath/cosy.svg";
 }

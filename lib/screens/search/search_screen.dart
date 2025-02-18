@@ -111,7 +111,8 @@ class _SearchScreenState extends State<SearchScreen> {
                 )
               : SvgPicture.asset(
                   AppAssets.building,
-                  color: ColorClass.appWhite,
+                  colorFilter: const ColorFilter.mode(
+                      ColorClass.appWhite, BlendMode.srcIn),
                 ),
         ),
       ),
@@ -157,13 +158,13 @@ class _SearchScreenState extends State<SearchScreen> {
                       child: Column(
                         mainAxisSize: MainAxisSize.min,
                         children: [
-                          _buildDialogOption(
-                              Icons.check_circle_outline, "Cosy areas"),
-                          _buildDialogOption(Icons.wallet, "Price",
+                          _buildDialogOption(AppAssets.cosy, "Cosy areas"),
+                          _buildDialogOption(AppAssets.wallet, "Price",
                               isSelected: true, showPrice: true),
-                          _buildDialogOption(Icons.apartment, "Infrastructure"),
                           _buildDialogOption(
-                              Icons.layers_clear, "Without any layer"),
+                              AppAssets.infrastructure, "Infrastructure"),
+                          _buildDialogOption(
+                              AppAssets.layer, "Without any layer"),
                         ],
                       ),
                     ),
@@ -177,11 +178,14 @@ class _SearchScreenState extends State<SearchScreen> {
     );
   }
 
-  Widget _buildDialogOption(IconData icon, String text,
+  Widget _buildDialogOption(String icon, String text,
       {bool isSelected = false, bool showPrice = false}) {
     return ListTile(
-      leading: Icon(icon,
-          color: isSelected ? ColorClass.appOrangeAccent : ColorClass.appGrey),
+      horizontalTitleGap: 4,
+      leading: SvgPicture.asset(icon,
+          colorFilter: ColorFilter.mode(
+              isSelected ? ColorClass.appOrangeAccent : ColorClass.appGrey,
+              BlendMode.srcIn)),
       title: Text(
         text,
         style: TextStyle(
@@ -236,7 +240,8 @@ class _SearchScreenState extends State<SearchScreen> {
               backgroundColor: Colors.white,
               child: SvgPicture.asset(
                 AppAssets.filter,
-                color: ColorClass.appGrey2,
+                colorFilter: const ColorFilter.mode(
+                    ColorClass.appGrey2, BlendMode.srcIn),
               ),
             ),
           ],
@@ -259,7 +264,8 @@ class _SearchScreenState extends State<SearchScreen> {
               backgroundColor: ColorClass.appGrey2,
               child: SvgPicture.asset(
                 AppAssets.layer,
-                color: ColorClass.appCream,
+                colorFilter: const ColorFilter.mode(
+                    ColorClass.appCream, BlendMode.srcIn),
                 width: 20.w,
                 height: 20.h,
               ),
@@ -275,7 +281,8 @@ class _SearchScreenState extends State<SearchScreen> {
               backgroundColor: ColorClass.appGrey2,
               child: SvgPicture.asset(
                 AppAssets.location,
-                color: ColorClass.appCream,
+                colorFilter: const ColorFilter.mode(
+                    ColorClass.appCream, BlendMode.srcIn),
                 width: 20.w,
                 height: 20.h,
               ),
@@ -302,7 +309,11 @@ class _SearchScreenState extends State<SearchScreen> {
                 RoundedRectangleBorder(borderRadius: BorderRadius.circular(24)),
           ),
           onPressed: () {},
-          icon: SvgPicture.asset(AppAssets.menu, color: ColorClass.appCream),
+          icon: SvgPicture.asset(
+            AppAssets.menu,
+            colorFilter:
+                const ColorFilter.mode(ColorClass.appCream, BlendMode.srcIn),
+          ),
           label: const Text("List of variants", style: AppText.regularCream),
         ),
       ),
