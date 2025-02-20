@@ -25,7 +25,7 @@ class _CustomBottomSheetState extends State<CustomBottomSheet> {
     await Future.delayed(const Duration(seconds: 4)); // 4s delay
     _scrollController.animateTo(
       0.7,
-      duration: const Duration(seconds: 2),
+      duration: const Duration(seconds: 1),
       curve: Curves.easeOut,
     );
   }

@@ -116,11 +116,6 @@ class _CustomContainerWithSliderState extends State<CustomContainerWithSlider>
                 child: Container(
                   height: 50,
                   padding: const EdgeInsets.symmetric(horizontal: 12),
-                  decoration: const BoxDecoration(
-                    borderRadius: BorderRadius.vertical(
-                      bottom: Radius.circular(16),
-                    ),
-                  ),
                   child: Stack(
                     children: [
                       Align(

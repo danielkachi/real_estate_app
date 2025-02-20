@@ -118,7 +118,8 @@ class _HomeScreenState extends State<HomeScreen>
                                   children: [
                                     SvgPicture.asset(
                                       AppAssets.location2,
-                                      color: ColorClass.appGrey,
+                                      colorFilter: const ColorFilter.mode(
+                                          ColorClass.appGrey, BlendMode.srcIn),
                                     ),
                                     const SizedBox(width: 4),
                                     Text(
